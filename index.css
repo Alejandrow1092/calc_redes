@@ -1,0 +1,149 @@
+
+
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.contenido{
+    width: 100%;
+    height:max-content;
+    background-color: #E6E6FA;
+}
+
+.calculadora{
+    width: 700px;
+    min-width: 100px;
+    height: 500px;
+    margin: auto;
+    background-color: #EA3A3A ;
+    margin-top: 50px;
+    position: relative;
+    border-radius: 40px;
+}
+
+h1{
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/*Seccion de la calculadora*/
+
+#campos{
+    float: left;
+    width:55%;
+    height: 200px;
+    background-color:#FFCA28 ;
+    margin: 20px 0px 0px 40px;
+}
+[for="dir"] {
+    position: relative;
+    background-color: #26c5dac5;
+    margin-left: 30px;
+    margin-top: 20px;  
+}
+
+input[id="dir"]{
+    position: relative;
+    left: 43px;
+}
+
+
+#campos ul li {
+    list-style: none;
+    background-color: #26c5dac5;
+    width: 70px;
+}
+
+#campos li a{
+    color: black;
+    font-size: 18px;
+}
+
+#campos li a:hover{
+    color: white;
+}
+
+#campos ul{
+    position: relative;
+    top: 40px;
+}
+
+#opcion{
+    clear: none;
+    position: relative;
+    left: 120px;
+    top:-45px;
+    
+}
+
+#clase{
+    margin: 10px;
+    position: relative;
+    right: 20px;
+    float: right;
+    background-color: #26c5dac5;
+    width: 30%;
+    height: 100px;
+    font-weight: bold;
+}
+
+#subred{
+    position: relative;
+    margin: 0px 10px;
+    right: 20px;
+    float: right;
+    background-color: #26c5dac5;
+    width: 30%;
+    height: 100px;
+    font-weight: bold;
+}
+
+#listaSub{
+    clear: both;
+    position: relative;
+    top: 25px;
+    background-color: white;
+    width: 40%;
+    margin: 0px 40px;
+    height: 240px;
+    font-weight: bold;
+    font-size: 18px;
+    overflow: scroll;
+}
+
+
+#listaSub p{
+    text-align: center;
+    background-color: #17A589;
+    
+}
+
+#listaHost{
+    
+    position: absolute;
+    float: right;
+    right: 50px;
+    width: 40%;
+    height: 240px;
+    background-color: white;
+    top: 245px;
+    font-weight: bold;
+    font-size: 18px;
+    overflow: scroll;
+}
+
+#listaHost p{
+    text-align: center;
+    background-color: #17A589;
+}
+
+@media all and (max-width: 968px){
+    .calculadora{
+    
+    }
+}
+
+
+
