@@ -44,6 +44,10 @@ h1{
     margin-top: 20px;  
 }
 
+button:hover{
+    background-color: gray;
+}
+
 input[id="dir"]{
     position: relative;
     left: 43px;
@@ -54,6 +58,7 @@ input[id="dir"]{
     list-style: none;
     background-color: #26c5dac5;
     width: 70px;
+    margin: 10px;
 }
 
 #campos li a{
@@ -68,6 +73,7 @@ input[id="dir"]{
 #campos ul{
     position: relative;
     top: 40px;
+    
 }
 
 #opcion{
@@ -137,6 +143,11 @@ input[id="dir"]{
 #listaHost p{
     text-align: center;
     background-color: #17A589;
+}
+
+button{
+    position: relative;
+    right: -120px;
 }
 
 @media all and (max-width: 968px){

@@ -33,30 +33,31 @@
 
 <!--Contenido de la calculadora-->
         <div class="contenido">
-            <h1>Calculadora de redes</h1>
+            <h1>Calculadora de IP</h1>
             <div class="calculadora">
                 <div id="campos">
                     <label for="dir">DIR IP</label>
                     <input type="text" id="dir">
                     <ul>
-                        <li><a href="#">Host</a></li>
-                        <li><a href="#">Subred</a></li>
-                        <li><a href="#">Prefijo</a></li>
+                        <li><a href="#" id="1" onclick="opciones(`1`)">Host</a></li>
+                        <li><a href="#" id="2" onclick="opciones(`2`)">Subred</a></li>
+                        <li><a href="#" id="3" onclick="opciones(`3`)" >Prefijo</a></li>
                     </ul>
                     <input type="text" id="opcion">
+                    <button onclick="main()">Calcular</button>
                 </div>
                 <div id="clase">
-                    <p>Clase: </p>
-                    <p>M.red: </p>
+                    <p id="class">Clase: </p>
+                    <p id="red">M.red: </p>
                 </div>
                 <div id="subred">
-                    <p>Subredes:</p>
-                    <p>Host:</p>
-                    <p>M.Subred:</p>
+                    <p id="sub">Subredes:</p>
+                    <p id="host">Host:</p>
+                    <p id="msub">M.Subred:</p>
                 </div>
                 <div id="listaSub">
                     <p>Lista de subredes</p>
-                    <ol>
+                    <ol id="ol">
                         <li></li>
                         <li></li>
                         <li></li>
