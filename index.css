@@ -37,6 +37,7 @@ h1{
     background-color:#FFCA28 ;
     margin: 20px 0px 0px 40px;
 }
+
 [for="dir"] {
     position: relative;
     background-color: #26c5dac5;
@@ -148,6 +149,10 @@ input[id="dir"]{
 button{
     position: relative;
     right: -120px;
+}
+
+ol{
+    margin-left: 15px;
 }
 
 /*

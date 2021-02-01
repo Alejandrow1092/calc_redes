@@ -1,5 +1,6 @@
 let op;//opcion elegida en la caja de texto
 let numeros=[128,192, 224,240, 248, 252, 254, 255];
+let arreglo=[];
 
 /*Objetos de la clase */
 let objA={
@@ -8,7 +9,8 @@ let objA={
     Prefix: 8,
     PosMsub: 1,
     MsubRed: [255,0,0,0],
-    host: 0
+    host: 0,
+    subred:0,
 };
 
 let objB={
@@ -18,6 +20,7 @@ let objB={
     PosMsub: 2,
     MsubRed: [255,255,0,0],
     host: 0,
+    subred:0,
 };
 
 let objC={
@@ -27,6 +30,7 @@ let objC={
     PosMsub: 3,
     MsubRed: [255,255,255,0],
     host: 0,
+    subred:0,
 };
 
 /*Funcion que le da la posicion a la caja de texto */
@@ -69,15 +73,22 @@ function main(){
     
     dirIP=document.getElementById("dir");
     let TipoClase=clase(dirIP.value);
-    
+    let saltoIP;
+    //obtener salto
+    saltoIP=salto(TipoClase);
+    console.log(`salto ${saltoIP}`);
+
+
+
+
     if(TipoClase.Clase==="A"){
-        claseA(TipoClase);
+        claseA(TipoClase, saltoIP, dirIP.value);
     }
     else if(TipoClase.Clase==="B"){
-        claseB(TipoClase);
+        claseB(TipoClase, saltoIP, dirIP.value);
     }
     else{
-        claseC(TipoClase);
+        claseB(TipoClase, saltoIP, dirIP.value);
     }
     
 } 
@@ -129,6 +140,7 @@ function clase(IP){
                     //console.log(`${subred}`);
                     bits=(Math.pow(2, subRed))-2;
                     document.getElementById("sub").innerHTML=`Subredes: ${bits}`;
+                    
                     break;
                 }
                 else{//redes
@@ -164,8 +176,8 @@ function clase(IP){
         let subRed1=Math.pow(2,subRed)-2;
         document.getElementById("sub").innerHTML=`Subredes: ${subRed1}`;
     }
-
-    
+    //guardamos la subred en el objeto
+    objetoClase.subred=subRed;
     //Mascara de subred
     objetoClase=Object.assign(objetoClase,MascaraSubred(objetoClase,subRed));
     let vari=objetoClase["MsubRed"].toString();
@@ -176,33 +188,63 @@ function clase(IP){
 }
 
 
-/*
-function hasBinario(){
-    let arr=["255","255","255","00000000"]
-    arr1=arr.slice(0,3);
-    for(x=0; x<5; x++){
-        arr1[x]='1';
-    }
-    console.log(`${arr1}`)
-    arr[3]=parseInt(arr1, 10);
-    console.log(`${arr.toString()}`);
-}*/
-
 function claseA(obj){
 
 }
 
-function claseB(obj){
+function claseB(obj, salto, dir){
+   arreglo=[];
+    let salto2=0, cont=0;
+    let indice;
+    let aux=dir.split('.');
+    arreglo=aux;
+    let s=(Math.pow(2,obj.subred)-2)
+
+    let div=parseInt(obj.subred/8);
+    //let indice=obj.PosMsub+div;
+    console.log(`el div ${div}`);
     
+    if(div==0){
+        indice=obj.PosMsub;
+        let contador=0;
+        console.log(`sub red ${Math.pow(2,obj.subred)-2}`)
+        for(x=0;x<s;x++){
+            arreglo[indice]=contador;
+            document.getElementById("ol").innerHTML+=`
+            <li><a href="#" onclick="hostCalc(arreglo, ${obj.host})">${arreglo.toString()}<a></li>
+            `;
+            contador=contador+salto;
+            if(contador>=255){
+                break;
+            }
+        }
+
+    }
+    else{
+
+    }
 
 
-    arr=[255,255,85,0];
-    //se aenxan las subredes
+    /*
+    for(x=0;x<(Math.pow(2,obj.subred)-2);x++){
+        salto2=salto+salto2;
+        if(salto2>256){
+            salto2=0;
+            cont++;
+            
+        }
+        //se aenxan las subredes
+        document.getElementById("ol").innerHTML+=`
+        <li><a href="#" onclick="hostCalc(arr, ${obj.host})">192.1.168.1.65<a></li>
+        `;
+    }*/
+    
+    /*
     for(x=0;x<obj.host;x++){
         document.getElementById("ol").innerHTML+=`
         <li><a href="#" onclick="hostCalc(arr, ${obj.host})">192.1.168.1.65<a></li>
         `;
-    }
+    }*/
 }
 
 function claseC(obj){
@@ -230,11 +272,25 @@ function MascaraSubred(obj, numBits){
 }
 
 function hostCalc(arr, val){
-    console.log("hola");
+   // console.log("hola");
     document.getElementById("ol1").innerHTML="";
     for(x=0;x<val;x++){
         arr[3]=x;
         document.getElementById("ol1").innerHTML+=`<li> ${arr.toString()} </li>`
         ;
     }
+}
+
+function salto(obj){
+    let menor=obj.MsubRed[obj.PosMsub];
+   // console.log(`menor ${menor}`);
+
+    for(x=obj.PosMsub;x<4;x++){
+        if(obj.MsubRed[x]<menor){
+            menor=obj.MsubRed[x];
+        }
+       // console.log(`x ${x}`)
+    }
+
+    return 255-menor;
 }
