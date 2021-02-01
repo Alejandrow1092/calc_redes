@@ -70,7 +70,8 @@ function opciones(c){
 function main(){
     //declaraciones
     let dirIP;
-    
+    document.getElementById("ol").innerHTML="";
+    document.getElementById("ol1").innerHTML="";
     dirIP=document.getElementById("dir");
     let TipoClase=clase(dirIP.value);
     let saltoIP;
@@ -78,9 +79,9 @@ function main(){
     saltoIP=salto(TipoClase);
     console.log(`salto ${saltoIP}`);
 
+    generaListas(TipoClase, saltoIP, dirIP.value);
 
-
-
+/*
     if(TipoClase.Clase==="A"){
         claseA(TipoClase, saltoIP, dirIP.value);
     }
@@ -90,7 +91,7 @@ function main(){
     else{
         claseB(TipoClase, saltoIP, dirIP.value);
     }
-    
+    */
 } 
 
 
@@ -192,7 +193,7 @@ function claseA(obj){
 
 }
 
-function claseB(obj, salto, dir){
+function generaListas(obj, salto, dir){
    arreglo=[];
     let salto2=0, cont=0;
     let indice;
@@ -210,8 +211,9 @@ function claseB(obj, salto, dir){
         console.log(`sub red ${Math.pow(2,obj.subred)-2}`)
         for(x=0;x<s;x++){
             arreglo[indice]=contador;
+
             document.getElementById("ol").innerHTML+=`
-            <li><a href="#" onclick="hostCalc(arreglo, ${obj.host})">${arreglo.toString()}<a></li>
+            <li><a href="#" onclick="hostCalc('${arreglo.toString()}', ${obj.host})">${arreglo.toString()}<a></li>
             `;
             contador=contador+salto;
             if(contador>=255){
@@ -221,7 +223,26 @@ function claseB(obj, salto, dir){
 
     }
     else{
-
+        indice=obj.PosMsub+div;
+        let contador=0;
+        let contador2=0;
+        let indice2=indice-1;
+        for(x=0;x<s;x++){
+            arreglo[indice]=contador;
+            document.getElementById("ol").innerHTML+=`
+            <li><a href="#" onclick="hostCalc('${arreglo.toString()}', ${obj.host})">${arreglo.toString()}<a></li>
+            `;
+            contador=contador+salto;
+            if(contador>=254){
+                contador2+=1
+                arreglo[indice2]=contador2;
+                contador=0;
+            }
+            if(contador2>=255){
+                contador2=0;
+                indice2-=1;
+            }
+        }
     }
 
 
@@ -239,12 +260,7 @@ function claseB(obj, salto, dir){
         `;
     }*/
     
-    /*
-    for(x=0;x<obj.host;x++){
-        document.getElementById("ol").innerHTML+=`
-        <li><a href="#" onclick="hostCalc(arr, ${obj.host})">192.1.168.1.65<a></li>
-        `;
-    }*/
+  
 }
 
 function claseC(obj){
@@ -273,7 +289,11 @@ function MascaraSubred(obj, numBits){
 
 function hostCalc(arr, val){
    // console.log("hola");
-    document.getElementById("ol1").innerHTML="";
+   console.log(`${arr}`); 
+
+   arr=arr.split(',');
+   
+   document.getElementById("ol1").innerHTML="";
     for(x=0;x<val;x++){
         arr[3]=x;
         document.getElementById("ol1").innerHTML+=`<li> ${arr.toString()} </li>`
