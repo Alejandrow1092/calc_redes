@@ -81,17 +81,6 @@ function main(){
 
     generaListas(TipoClase, saltoIP, dirIP.value);
 
-/*
-    if(TipoClase.Clase==="A"){
-        claseA(TipoClase, saltoIP, dirIP.value);
-    }
-    else if(TipoClase.Clase==="B"){
-        claseB(TipoClase, saltoIP, dirIP.value);
-    }
-    else{
-        claseB(TipoClase, saltoIP, dirIP.value);
-    }
-    */
 } 
 
 
@@ -124,10 +113,9 @@ function clase(IP){
     
 
     if(op!=3){
-        let subred1;
         let valorCaja=document.getElementById("opcion");
-        for(x=1;x<20;x++){
-            if((Math.pow(2, x))-2>valorCaja.value){
+        for(x=2;x<20;x++){
+            if((Math.pow(2, x))-2>=valorCaja.value){
                 //console.log("valor x"+x)
                 bits=(Math.pow(2, x))-2;
                 if(op==1){//host
@@ -188,11 +176,6 @@ function clase(IP){
     return objetoClase;
 }
 
-
-function claseA(obj){
-
-}
-
 function generaListas(obj, salto, dir){
    arreglo=[];
     let salto2=0, cont=0;
@@ -224,7 +207,7 @@ function generaListas(obj, salto, dir){
     }
     else{
         indice=obj.PosMsub+div;
-        let contador=0;
+        let contador=salto;
         let contador2=0;
         let indice2=indice-1;
         for(x=0;x<s;x++){
@@ -233,33 +216,19 @@ function generaListas(obj, salto, dir){
             <li><a href="#" onclick="hostCalc('${arreglo.toString()}', ${obj.host})">${arreglo.toString()}<a></li>
             `;
             contador=contador+salto;
+            //se reinica el contador mas a la deracha
             if(contador>=254){
                 contador2+=1
                 arreglo[indice2]=contador2;
                 contador=0;
             }
-            if(contador2>=255){
+            //se mueve de posicion a una menos.
+            if(contador2>=256){
                 contador2=0;
                 indice2-=1;
             }
         }
     }
-
-
-    /*
-    for(x=0;x<(Math.pow(2,obj.subred)-2);x++){
-        salto2=salto+salto2;
-        if(salto2>256){
-            salto2=0;
-            cont++;
-            
-        }
-        //se aenxan las subredes
-        document.getElementById("ol").innerHTML+=`
-        <li><a href="#" onclick="hostCalc(arr, ${obj.host})">192.1.168.1.65<a></li>
-        `;
-    }*/
-    
   
 }
 
@@ -311,6 +280,6 @@ function salto(obj){
         }
        // console.log(`x ${x}`)
     }
-
-    return 255-menor;
+    console.log("salto"+255-menor);
+    return 256-menor;
 }
